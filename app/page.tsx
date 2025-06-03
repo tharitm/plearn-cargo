@@ -1,6 +1,5 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
@@ -28,38 +27,7 @@ import {
   UserCheck,
 } from "lucide-react"
 
-const heroImages = [
-  {
-    url: "/placeholder.svg?height=800&width=1600",
-    title: "นำเข้าสินค้าจากต่างประเทศ",
-    subtitle: "ง่าย รวดเร็ว เชื่อถือได้",
-    foregroundImageUrl: null,
-  },
-  {
-    url: "/placeholder.svg?height=800&width=1600", // Background image
-    title: "ติดตามพัสดุได้ 24 ชั่วโมง",
-    subtitle: "ตรวจสอบสถานะพัสดุของคุณได้ทุกที่ทุกเวลา",
-    foregroundImageUrl: "/placeholder.svg?height=400&width=200&text=Mobile+Tracking+UI", // Foreground image
-  },
-  {
-    url: "/placeholder.svg?height=800&width=1600",
-    title: "ทีมงานมืออาชีพ",
-    subtitle: "ประสบการณ์มากกว่า 10 ปี",
-    foregroundImageUrl: null,
-  },
-]
-
 export default function ImportBusinessLanding() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  // Auto slide for hero section
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroImages.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -97,97 +65,94 @@ export default function ImportBusinessLanding() {
         </div>
       </header>
 
-      {/* Hero Section with Slider */}
-      <section className="relative h-[600px] overflow-hidden">
-        {heroImages.map((image, index) => (
-          <div
-            key={index}
-            className={`hero-slide ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
-            style={{ backgroundImage: `url(${image.url})` }}
-          >
-            <div className="absolute inset-0 bg-black/50"></div>
-          </div>
-        ))}
-
-        <div className="container mx-auto px-4 h-full flex items-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-white max-w-3xl" // Consider adjusting max-width or layout if foreground image is large
-          >
-            <div className="md:flex md:items-center"> {/* Flex container for text and image */}
-              <div className="md:w-2/3"> {/* Text content takes 2/3 width on medium+ screens */}
-                <AnimatePresence mode="wait">
-                  <motion.h1
-                key={`title-${currentSlide}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="text-4xl md:text-6xl font-bold mb-6"
-              >
-                {heroImages[currentSlide].title}
-                <span className="block text-primary">{heroImages[currentSlide].subtitle}</span>
-              </motion.h1>
-                </AnimatePresence>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-xl md:text-2xl mb-8 text-brand-primary-light"
-                >
-                  บริการนำเข้าสินค้าครบวงจร ตั้งแต่การสั่งซื้อ จนถึงมือคุณ พร้อมทีมผู้เชี่ยวชาญและระบบติดตามที่โปร่งใส
-                </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="flex flex-col sm:flex-row gap-4"
-                >
-                  <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-brand-primary-hover transition-colors flex items-center justify-center">
-                    เริ่มใช้บริการ <ArrowRight className="ml-2 w-5 h-5" />
-                  </button>
-                  <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-colors">
-                    ดูตัวอย่างงาน
-                  </button>
-                </motion.div>
+      {/* New Hero Section */}
+      <section id="new-hero" className="bg-white">
+        <div className="container mx-auto px-4 py-20">
+          <div className="md:flex md:items-center md:gap-12">
+            <div className="md:w-1/2">
+              {/* Left Column Content (Text) */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
+                บริการขนส่งรวดเร็ว ปลอดภัย{" "}
+                <span className="text-primary">พร้อมติดตามพัสดุได้ 24 ชั่วโมง</span>
+              </h1>
+              <p className="text-lg text-gray-600 mb-8">
+                Plearn Cargo ให้บริการขนส่งสินค้าระหว่างประเทศครบวงจร พร้อมระบบติดตามอัจฉริยะที่ให้คุณตรวจสอบสถานะพัสดุได้ทุกที่ทุกเวลา มั่นใจได้ว่าสินค้าของคุณจะถึงปลายทางอย่างปลอดภัยและตรงเวลา
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="bg-primary text-white px-8 py-3 rounded-lg font-semibold text-lg hover:opacity-90 transition-opacity flex items-center justify-center">
+                  เริ่มใช้บริการ <ArrowRight className="ml-2 w-5 h-5" />
+                </button>
+                <button className="border-2 border-primary text-primary px-8 py-3 rounded-lg font-semibold text-lg hover:bg-primary hover:text-white transition-colors flex items-center justify-center">
+                  เช็คสถานะพัสดุ <Search className="ml-2 w-5 h-5" />
+                </button>
               </div>
-
-              {/* Foreground Image Area */}
-              {heroImages[currentSlide].foregroundImageUrl && (
-                <motion.div
-                  key={`fgimg-${currentSlide}`}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  className="md:w-1/3 mt-8 md:mt-0 flex justify-center md:justify-end"
-                >
-                  <Image
-                    src={heroImages[currentSlide].foregroundImageUrl!}
-                    alt={heroImages[currentSlide].title} // Or a more specific alt
-                    width={200} // Adjust as needed
-                    height={400} // Adjust as needed
-                    className="rounded-lg shadow-xl object-contain"
-                  />
-                </motion.div>
-              )}
             </div>
-          </motion.div>
-        </div>
+            <div className="md:w-1/2 mt-8 md:mt-0 flex items-center justify-center">
+              {/* Mobile Mockup */}
+              <div className="w-80 mx-auto rounded-[2.5rem] border-8 border-gray-800 bg-gray-800 shadow-2xl relative">
+                <div className="bg-white rounded-[2rem] p-4 h-[550px] overflow-y-auto">
+                  {/* Screen Header */}
+                  <div className="text-center text-sm text-gray-500 mb-2">PlearnCargo.com</div>
 
-        {/* Slider indicators */}
-        <div className="absolute bottom-6 left-0 right-0 flex justify-center space-x-2">
-          {heroImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full ${index === currentSlide ? "bg-primary" : "bg-white/50"}`}
-            ></button>
-          ))}
+                  {/* App Header */}
+                  <div className="text-lg font-semibold text-gray-700 mb-4 text-center border-b pb-2">ติดตามพัสดุ</div>
+
+                  {/* Parcel Number */}
+                  <div className="bg-gray-100 p-3 rounded-lg shadow-sm mb-4">
+                    <label className="text-xs text-gray-500 block mb-1">หมายเลขพัสดุ:</label>
+                    <p className="text-sm text-gray-800 font-medium">TH123456789XYZ</p>
+                  </div>
+
+                  {/* Current Status Card */}
+                  <div className="bg-primary/10 p-4 rounded-lg shadow-md mb-6">
+                    <div className="flex items-center mb-2">
+                      <Truck className="w-6 h-6 text-primary mr-3 flex-shrink-0" />
+                      <h3 className="text-md font-semibold text-primary">กำลังขนส่ง</h3>
+                    </div>
+                    <p className="text-xs text-gray-600">อัปเดตล่าสุด: 15 มิ.ย. 2024, 14:30</p>
+                  </div>
+
+                  {/* Shipment Timeline */}
+                  <div className="space-y-4">
+                    {/* Step 1: Completed */}
+                    <div className="flex items-center">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-gray-700">รับพัสดุแล้ว</p>
+                        <p className="text-xs text-gray-500">14 มิ.ย. 2024, 10:00</p>
+                      </div>
+                    </div>
+                    {/* Step 2: Current */}
+                    <div className="flex items-center">
+                      <Truck className="w-5 h-5 text-primary mr-3 flex-shrink-0" /> {/* Changed icon for current step */}
+                      <div>
+                        <p className="text-sm font-medium text-primary">อยู่ระหว่างขนส่ง</p>
+                        <p className="text-xs text-gray-500">14 มิ.ย. 2024, 18:30</p>
+                      </div>
+                    </div>
+                    {/* Step 3: Pending */}
+                    <div className="flex items-center opacity-60"> {/* Added opacity for pending */}
+                      <Clock className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-gray-500">ถึงศูนย์คัดแยกปลายทาง</p>
+                        <p className="text-xs text-gray-400">รอดำเนินการ</p>
+                      </div>
+                    </div>
+                    {/* Step 4: Pending */}
+                    <div className="flex items-center opacity-60"> {/* Added opacity for pending */}
+                      <Clock className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-gray-500">กำลังนำจ่าย</p>
+                        <p className="text-xs text-gray-400">รอดำเนินการ</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* Notch (Optional) */}
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-5 bg-gray-800 rounded-b-xl"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
