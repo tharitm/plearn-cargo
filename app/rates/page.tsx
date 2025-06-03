@@ -15,18 +15,18 @@ export default function RatesPage() {
             <span className="font-semibold">กลับหน้าหลัก</span>
           </Link>
           <h1 className="text-xl font-bold text-primary">อัตราค่าบริการ</h1>
-          <button className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-400 transition-colors">
+          <button className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-brand-primary-hover transition-colors">
             สอบถามผ่าน LINE
           </button>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-blue-400 text-white">
+      <section className="py-20 bg-gradient-to-br from-primary to-brand-primary-hover text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">บริการขนส่งจากจีนมาไทย</h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">ทางรถและทางเรือ</p>
+            <p className="text-xl md:text-2xl mb-8 text-brand-primary-light">ทางรถและทางเรือ</p>
             <div className="bg-white text-primary px-6 py-3 rounded-lg inline-block font-bold text-lg">
               คิดเป็นคิว (CBM) เท่านั้น*
             </div>
@@ -162,7 +162,7 @@ export default function RatesPage() {
             viewport={{ once: true }}
             className="mt-12 text-center"
           >
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 max-w-2xl mx-auto">
+            <div className="bg-blue-50 border border-brand-border-light rounded-lg p-6 max-w-2xl mx-auto">
               <h3 className="text-lg font-bold text-primary mb-3">หมายเหตุ:</h3>
               <ul className="text-gray-700 space-y-2">
                 <li>• ราคาข้างต้นเป็นราคาพิเศษสำหรับลูกค้าประจำ</li>
@@ -182,7 +182,7 @@ export default function RatesPage() {
             className="text-center mt-12"
           >
             <div className="space-y-4">
-              <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-400 transition-colors">
+              <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-brand-primary-hover transition-colors">
                 สอบถามเรทพิเศษ
               </button>
               <p className="text-gray-600">หรือติดต่อผ่าน LINE: @plearn.cargo</p>

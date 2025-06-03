@@ -33,16 +33,19 @@ const heroImages = [
     url: "/placeholder.svg?height=800&width=1600",
     title: "นำเข้าสินค้าจากต่างประเทศ",
     subtitle: "ง่าย รวดเร็ว เชื่อถือได้",
+    foregroundImageUrl: null,
   },
   {
-    url: "/placeholder.svg?height=800&width=1600",
-    title: "บริการครบวงจร",
-    subtitle: "ตั้งแต่สั่งซื้อจนถึงส่งมอบ",
+    url: "/placeholder.svg?height=800&width=1600", // Background image
+    title: "ติดตามพัสดุได้ 24 ชั่วโมง",
+    subtitle: "ตรวจสอบสถานะพัสดุของคุณได้ทุกที่ทุกเวลา",
+    foregroundImageUrl: "/placeholder.svg?height=400&width=200&text=Mobile+Tracking+UI", // Foreground image
   },
   {
     url: "/placeholder.svg?height=800&width=1600",
     title: "ทีมงานมืออาชีพ",
     subtitle: "ประสบการณ์มากกว่า 10 ปี",
+    foregroundImageUrl: null,
   },
 ]
 
@@ -88,7 +91,7 @@ export default function ImportBusinessLanding() {
               ติดต่อ
             </Link>
           </nav>
-          <button className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-400 transition-colors">
+          <button className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-brand-primary-hover transition-colors">
             สอบถามผ่าน LINE
           </button>
         </div>
@@ -102,7 +105,7 @@ export default function ImportBusinessLanding() {
             className={`hero-slide ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
             style={{ backgroundImage: `url(${image.url})` }}
           >
-            <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+            <div className="absolute inset-0 bg-black/50"></div>
           </div>
         ))}
 
@@ -111,10 +114,12 @@ export default function ImportBusinessLanding() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white max-w-3xl"
+            className="text-white max-w-3xl" // Consider adjusting max-width or layout if foreground image is large
           >
-            <AnimatePresence mode="wait">
-              <motion.h1
+            <div className="md:flex md:items-center"> {/* Flex container for text and image */}
+              <div className="md:w-2/3"> {/* Text content takes 2/3 width on medium+ screens */}
+                <AnimatePresence mode="wait">
+                  <motion.h1
                 key={`title-${currentSlide}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -125,30 +130,52 @@ export default function ImportBusinessLanding() {
                 {heroImages[currentSlide].title}
                 <span className="block text-primary">{heroImages[currentSlide].subtitle}</span>
               </motion.h1>
-            </AnimatePresence>
+                </AnimatePresence>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl mb-8 text-blue-100"
-            >
-              บริการนำเข้าสินค้าครบวงจร ตั้งแต่การสั่งซื้อ จนถึงมือคุณ พร้อมทีมผู้เชี่ยวชาญและระบบติดตามที่โปร่งใส
-            </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="text-xl md:text-2xl mb-8 text-brand-primary-light"
+                >
+                  บริการนำเข้าสินค้าครบวงจร ตั้งแต่การสั่งซื้อ จนถึงมือคุณ พร้อมทีมผู้เชี่ยวชาญและระบบติดตามที่โปร่งใส
+                </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-400 transition-colors flex items-center justify-center">
-                เริ่มใช้บริการ <ArrowRight className="ml-2 w-5 h-5" />
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-colors">
-                ดูตัวอย่างงาน
-              </button>
-            </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="flex flex-col sm:flex-row gap-4"
+                >
+                  <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-brand-primary-hover transition-colors flex items-center justify-center">
+                    เริ่มใช้บริการ <ArrowRight className="ml-2 w-5 h-5" />
+                  </button>
+                  <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-colors">
+                    ดูตัวอย่างงาน
+                  </button>
+                </motion.div>
+              </div>
+
+              {/* Foreground Image Area */}
+              {heroImages[currentSlide].foregroundImageUrl && (
+                <motion.div
+                  key={`fgimg-${currentSlide}`}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="md:w-1/3 mt-8 md:mt-0 flex justify-center md:justify-end"
+                >
+                  <Image
+                    src={heroImages[currentSlide].foregroundImageUrl!}
+                    alt={heroImages[currentSlide].title} // Or a more specific alt
+                    width={200} // Adjust as needed
+                    height={400} // Adjust as needed
+                    className="rounded-lg shadow-xl object-contain"
+                  />
+                </motion.div>
+              )}
+            </div>
           </motion.div>
         </div>
 
@@ -158,7 +185,7 @@ export default function ImportBusinessLanding() {
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full ${index === currentSlide ? "bg-primary" : "bg-white bg-opacity-50"}`}
+              className={`w-3 h-3 rounded-full ${index === currentSlide ? "bg-primary" : "bg-white/50"}`}
             ></button>
           ))}
         </div>
@@ -263,7 +290,7 @@ export default function ImportBusinessLanding() {
             viewport={{ once: true }}
             className="text-center mt-12"
           >
-            <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-400 transition-colors">
+            <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-brand-primary-hover transition-colors">
               สอบถามผ่าน LINE
             </button>
           </motion.div>
@@ -334,7 +361,7 @@ export default function ImportBusinessLanding() {
             viewport={{ once: true }}
             className="text-center mt-12"
           >
-            <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-400 transition-colors">
+            <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-brand-primary-hover transition-colors">
               เริ่มใช้บริการ
             </button>
           </motion.div>
@@ -374,7 +401,8 @@ export default function ImportBusinessLanding() {
                     <input
                       type="text"
                       placeholder="กรอกหมายเลขพัสดุ"
-                      className="w-full px-4 py-3 pr-12 rounded-lg border-2 border-white bg-white/10 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white"
+                      className="w-full px-4 py-3 pr-12 rounded-lg border-2 border-white text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white"
+                      style={{ backgroundColor: 'var(--brand-white-transparent-10)' }}
                     />
                     <Search className="absolute right-4 top-3 w-5 h-5 text-white" />
                   </div>
@@ -394,11 +422,11 @@ export default function ImportBusinessLanding() {
                   <div className="bg-white rounded-xl shadow-xl p-6 max-w-md">
                     <div className="flex items-center justify-between mb-6">
                       <h3 className="font-bold text-primary">ระบบติดตามพัสดุ</h3>
-                      <span className="text-green-500 text-sm font-semibold">สถานะ: กำลังขนส่ง</span>
+                      <span className="text-brand-green text-sm font-semibold">สถานะ: กำลังขนส่ง</span>
                     </div>
                     <div className="space-y-6">
                       <div className="flex items-center">
-                        <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white">
+                        <div className="w-8 h-8 rounded-full bg-brand-green flex items-center justify-center text-white">
                           <CheckCircle className="w-5 h-5" />
                         </div>
                         <div className="ml-4">
@@ -407,7 +435,7 @@ export default function ImportBusinessLanding() {
                         </div>
                       </div>
                       <div className="flex items-center">
-                        <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white">
+                        <div className="w-8 h-8 rounded-full bg-brand-green flex items-center justify-center text-white">
                           <CheckCircle className="w-5 h-5" />
                         </div>
                         <div className="ml-4">
@@ -416,7 +444,7 @@ export default function ImportBusinessLanding() {
                         </div>
                       </div>
                       <div className="flex items-center">
-                        <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                        <div className="w-8 h-8 rounded-full bg-brand-blue flex items-center justify-center text-white">
                           <Clock className="w-5 h-5" />
                         </div>
                         <div className="ml-4">
@@ -469,7 +497,7 @@ export default function ImportBusinessLanding() {
       </section>
 
       {/* Concept Section */}
-      <section id="concept" className="py-20 bg-gradient-to-br from-primary to-blue-400 text-white">
+      <section id="concept" className="py-20 bg-gradient-to-br from-primary to-brand-primary-hover text-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -479,13 +507,14 @@ export default function ImportBusinessLanding() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">แนวคิดของเรา</h2>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">บริการขนส่งที่ตอบโจทย์ทุกความต้องการ</p>
+            <p className="text-xl text-brand-primary-light max-w-2xl mx-auto">บริการขนส่งที่ตอบโจทย์ทุกความต้องการ</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-5 gap-12 items-center"> {/* Changed md:grid-cols-2 to md:grid-cols-5 */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
+              className="md:col-span-3" // Image takes 3 columns on medium+ screens
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
@@ -503,21 +532,30 @@ export default function ImportBusinessLanding() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="space-y-8"
+              className="space-y-8 md:col-span-2" // Text content takes 2 columns
             >
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+              <div
+                className="backdrop-blur-sm p-6 rounded-xl border hover:bg-[var(--brand-white-transparent-20)] transition-all duration-300"
+                style={{ backgroundColor: 'var(--brand-white-transparent-10)', borderColor: 'var(--brand-white-transparent-20)' }}
+              >
                 <h3 className="text-2xl font-bold mb-3 text-white">ชิ้นเดียวก็ส่งได้</h3>
-                <p className="text-lg">ส่งง่ายสบายใจในเรทเดียว ไม่มีขั้นต่ำ ลงทุนน้อย ทุนไม่จม</p>
+                <p className="text-lg">ส่งง่ายในเรทเดียว ไม่มีขั้นต่ำ</p>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+              <div
+                className="backdrop-blur-sm p-6 rounded-xl border hover:bg-[var(--brand-white-transparent-20)] transition-all duration-300"
+                style={{ backgroundColor: 'var(--brand-white-transparent-10)', borderColor: 'var(--brand-white-transparent-20)' }}
+              >
                 <h3 className="text-2xl font-bold mb-3 text-white">เรทพิเศษสำหรับลูกค้า VIP</h3>
-                <p className="text-lg">ลูกค้าขนส่งสินค้า 4 คิวขึ้นไป มีเรทพิเศษ ราคาดีแบบสุดๆ</p>
+                <p className="text-lg">เรทพิเศษสำหรับลูกค้าขนส่งเยอะ</p>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+              <div
+                className="backdrop-blur-sm p-6 rounded-xl border hover:bg-[var(--brand-white-transparent-20)] transition-all duration-300"
+                style={{ backgroundColor: 'var(--brand-white-transparent-10)', borderColor: 'var(--brand-white-transparent-20)' }}
+              >
                 <h3 className="text-2xl font-bold mb-3 text-white">ปิดตู้ไว ส่งถึงเร็ว</h3>
-                <p className="text-lg">ปิดตู้ภายใน 1-2 วัน เพื่อให้ลูกค้าได้รับสินค้าเร็วที่สุด สั่งได้เรื่อยๆ</p>
+                <p className="text-lg">ปิดตู้ไว สินค้าถึงมือลูกค้าเร็ว</p>
               </div>
 
               <div className="flex items-center space-x-4 mt-8">
@@ -565,7 +603,7 @@ export default function ImportBusinessLanding() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <button className="w-20 h-20 bg-primary rounded-full flex items-center justify-center hover:bg-blue-400 transition-colors">
+                  <button className="w-20 h-20 bg-primary rounded-full flex items-center justify-center hover:bg-brand-primary-hover transition-colors">
                     <PlayCircle className="w-12 h-12 text-white" />
                   </button>
                 </div>
@@ -628,7 +666,7 @@ export default function ImportBusinessLanding() {
               </div>
 
               <div className="flex justify-center">
-                <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-400 transition-colors flex items-center">
+                <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-brand-primary-hover transition-colors flex items-center">
                   <Calendar className="mr-2 w-5 h-5" /> จองที่นั่งเลย
                 </button>
               </div>
@@ -965,7 +1003,7 @@ export default function ImportBusinessLanding() {
                 <div>
                   <h3 className="text-xl font-bold text-primary mb-2">LINE Official</h3>
                   <p className="text-gray-600 mb-4">@Plearn Cargo</p>
-                  <button className="bg-[#00C300] text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  <button className="bg-brand-line-green text-white px-6 py-2 rounded-lg hover:bg-brand-line-green-hover transition-colors">
                     แชทเลย
                   </button>
                 </div>
@@ -998,7 +1036,7 @@ export default function ImportBusinessLanding() {
 
             {/* CTA Button */}
             <div className="text-center mt-12">
-              <button className="bg-primary text-white px-12 py-4 rounded-lg text-lg font-semibold hover:bg-blue-400 transition-colors">
+              <button className="bg-primary text-white px-12 py-4 rounded-lg text-lg font-semibold hover:bg-brand-primary-hover transition-colors">
                 เริ่มใช้บริการ
               </button>
             </div>
@@ -1017,22 +1055,22 @@ export default function ImportBusinessLanding() {
                 </div>
                 <span className="text-xl font-bold">Plearn Cargo</span>
               </div>
-              <p className="text-blue-100 mb-4">ผู้เชี่ยวชาญด้านการนำเข้าสินค้าจากต่างประเทศ ให้บริการมากว่า 10 ปี</p>
+              <p className="text-brand-primary-light mb-4">ผู้เชี่ยวชาญด้านการนำเข้าสินค้าจากต่างประเทศ ให้บริการมากว่า 10 ปี</p>
               <div className="flex space-x-4">
-                <div className="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-brand-primary-hover rounded-full flex items-center justify-center">
                   <span className="text-xs">f</span>
                 </div>
-                <div className="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-brand-primary-hover rounded-full flex items-center justify-center">
                   <span className="text-xs">L</span>
                 </div>
-                <div className="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-brand-primary-hover rounded-full flex items-center justify-center">
                   <span className="text-xs">@</span>
                 </div>
               </div>
             </div>
             <div>
               <h4 className="text-lg font-bold mb-4">บริการ</h4>
-              <ul className="space-y-2 text-blue-100">
+              <ul className="space-y-2 text-brand-primary-light">
                 <li>
                   <Link href="#" className="hover:text-white transition-colors">
                     นำเข้าจากจีน
@@ -1062,7 +1100,7 @@ export default function ImportBusinessLanding() {
             </div>
             <div>
               <h4 className="text-lg font-bold mb-4">ข้อมูลบริษัท</h4>
-              <ul className="space-y-2 text-blue-100">
+              <ul className="space-y-2 text-brand-primary-light">
                 <li>
                   <Link href="#" className="hover:text-white transition-colors">
                     เกี่ยวกับเรา
@@ -1092,7 +1130,7 @@ export default function ImportBusinessLanding() {
             </div>
             <div>
               <h4 className="text-lg font-bold mb-4">ติดต่อเรา</h4>
-              <div className="space-y-2 text-blue-100">
+              <div className="space-y-2 text-brand-primary-light">
                 <p>📍 123/45 ถนนสุขุมวิท แขวงคลองตัน</p>
                 <p>เขตวัฒนา กรุงเทพฯ 10110</p>
                 <p>📞 02-123-4567</p>
@@ -1101,7 +1139,7 @@ export default function ImportBusinessLanding() {
               </div>
             </div>
           </div>
-          <div className="border-t border-blue-400 mt-8 pt-8 text-center text-blue-100">
+          <div className="border-t border-brand-primary-hover mt-8 pt-8 text-center text-brand-primary-light">
             <p>&copy; 2024 Plearn Cargo. สงวนลิขสิทธิ์ทุกประการ</p>
           </div>
         </div>
@@ -1109,7 +1147,7 @@ export default function ImportBusinessLanding() {
 
       {/* Floating CTA */}
       <div className="fixed bottom-6 right-6 z-50">
-        <button className="bg-[#00C300] text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors">
+        <button className="bg-brand-line-green text-white p-4 rounded-full shadow-lg hover:bg-brand-line-green-hover transition-colors">
           <MessageCircle className="w-6 h-6" />
         </button>
       </div>
