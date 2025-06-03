@@ -30,17 +30,14 @@ import {
 
 const heroImages = [
   {
-    url: "/placeholder.svg?height=800&width=1600",
     title: "นำเข้าสินค้าจากต่างประเทศ",
     subtitle: "ง่าย รวดเร็ว เชื่อถือได้",
   },
   {
-    url: "/placeholder.svg?height=800&width=1600",
     title: "บริการครบวงจร",
     subtitle: "ตั้งแต่สั่งซื้อจนถึงส่งมอบ",
   },
   {
-    url: "/placeholder.svg?height=800&width=1600",
     title: "ทีมงานมืออาชีพ",
     subtitle: "ประสบการณ์มากกว่า 10 ปี",
   },
@@ -94,73 +91,113 @@ export default function ImportBusinessLanding() {
         </div>
       </header>
 
-      {/* Hero Section with Slider */}
-      <section className="relative h-[600px] overflow-hidden">
-        {heroImages.map((image, index) => (
-          <div
-            key={index}
-            className={`hero-slide ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
-            style={{ backgroundImage: `url(${image.url})` }}
-          >
-            <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-          </div>
-        ))}
-
-        <div className="container mx-auto px-4 h-full flex items-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-white max-w-3xl"
-          >
-            <AnimatePresence mode="wait">
-              <motion.h1
-                key={`title-${currentSlide}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="text-4xl md:text-6xl font-bold mb-6"
-              >
-                {heroImages[currentSlide].title}
-                <span className="block text-primary">{heroImages[currentSlide].subtitle}</span>
-              </motion.h1>
-            </AnimatePresence>
+      {/* Hero Section */}
+      <section className="bg-white">
+        <div className="container mx-auto px-4 lg:px-8 py-16 flex flex-col lg:flex-row items-center">
+          {/* Left Column: Text & CTA */}
+          <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
+            <motion.h1
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900"
+            >
+              บริการนำเข้าสินค้าครบวงจร
+              <span className="block text-primary mt-2">ติดตามสถานะพัสดุแบบเรียลไทม์</span>
+            </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl mb-8 text-blue-100"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-lg sm:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0"
             >
-              บริการนำเข้าสินค้าครบวงจร ตั้งแต่การสั่งซื้อ จนถึงมือคุณ พร้อมทีมผู้เชี่ยวชาญและระบบติดตามที่โปร่งใส
+              รู้สถานะพัสดุได้ตลอดเส้นทางในมือถือของคุณ ดูประวัติและขั้นตอนการจัดส่งอย่างชัดเจน
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mt-6"
             >
-              <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-400 transition-colors flex items-center justify-center">
-                เริ่มใช้บริการ <ArrowRight className="ml-2 w-5 h-5" />
+              <button className="bg-primary text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary/90 transition-colors flex items-center">
+                เริ่มใช้บริการ
+                <ArrowRight className="ml-2 w-5 h-5" />
               </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-colors">
-                ดูตัวอย่างงาน
+              <button className="border-2 border-primary text-primary px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary hover:text-white transition-colors">
+                ดูตัวอย่างการติดตาม
               </button>
             </motion.div>
-          </motion.div>
-        </div>
+          </div>
 
-        {/* Slider indicators */}
-        <div className="absolute bottom-6 left-0 right-0 flex justify-center space-x-2">
-          {heroImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full ${index === currentSlide ? "bg-primary" : "bg-white bg-opacity-50"}`}
-            ></button>
-          ))}
+          {/* Right Column: Mobile Mockup */}
+          <div className="w-full lg:w-1/2 mt-10 lg:mt-0 flex justify-center">
+            <div className="relative w-64 h-[480px] bg-gray-100 rounded-3xl shadow-xl overflow-hidden">
+              {/* Simulated mobile device frame */}
+              <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-16 h-2 bg-gray-300 rounded-full"></div>
+              {/* Mobile screen content */}
+              <div className="absolute inset-0 p-4 flex flex-col bg-white">
+                {/* Header area */}
+                <div className="mb-4 flex justify-between items-center">
+                  <span className="text-sm font-semibold text-gray-500">เช็คสถานะพัสดุ</span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                </div>
+                {/* Tracking number */}
+                <div className="mb-6">
+                  <p className="text-xs text-gray-400">หมายเลขพัสดุ</p>
+                  <p className="text-lg font-bold text-primary">TH12345678901</p>
+                </div>
+                {/* Status badge */}
+                <div className="mb-6">
+                  <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                    กำลังขนส่ง
+                  </span>
+                </div>
+                {/* Timeline steps */}
+                <div className="flex flex-col space-y-4 flex-grow">
+                  <div className="flex items-start">
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">
+                      ✓
+                    </div>
+                    <div className="ml-3">
+                      <p className="text-sm font-medium text-gray-700">12 มิ.ย. 10:30 - ออกจากคลังต้นทาง</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">
+                      ✓
+                    </div>
+                    <div className="ml-3">
+                      <p className="text-sm font-medium text-gray-700">14 มิ.ย. 08:45 - ถึงด่านศุลกากร</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs">
+                      …
+                    </div>
+                    <div className="ml-3">
+                      <p className="text-sm font-medium text-gray-700">15 มิ.ย. 14:20 - กำลังดำเนินพิธีการศุลกากร</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start opacity-50">
+                    <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center text-white text-xs">
+                      …
+                    </div>
+                    <div className="ml-3">
+                      <p className="text-sm font-medium text-gray-400">รอดำเนินการ - ถึงคลังปลายทาง</p>
+                    </div>
+                  </div>
+                </div>
+                {/* Footer */}
+                <div className="pt-4 border-t border-gray-200">
+                  <button className="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                    ดูรายละเอียดเพิ่มเติม
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -177,40 +214,54 @@ export default function ImportBusinessLanding() {
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">บริการของเรา</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">ครอบคลุมทุกขั้นตอนการนำเข้าสินค้า ด้วยประสบการณ์กว่า 10 ปี</p>
           </motion.div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: <Globe className="w-8 h-8" />,
                 title: "สั่งซื้อสินค้าจากต่างประเทศ",
                 image: "/placeholder.svg?height=200&width=400",
-                points: ["ช่วยสั่งซื้อสินค้าจากจีน เกาหลี ญี่ปุ่น", "ตรวจสอบความน่าเชื่อถือของผู้ขาย", "เจรจาต่อรองราคาให้ดีที่สุด"],
+                points: [
+                  "ช่วยสั่งซื้อสินค้าจากจีน เกาหลี ญี่ปุ่น",
+                  "ตรวจสอบความน่าเชื่อถือของผู้ขาย",
+                  "เจรจาต่อรองราคาให้ดีที่สุด",
+                ],
               },
               {
-                icon: <Truck className="w-8 h-8" />,
                 title: "ขนส่งและโลจิสติกส์",
                 image: "/placeholder.svg?height=200&width=400",
-                points: ["บริการขนส่งทางเรือ อากาศ และรถบรรทุก", "ระบบติดตามสถานะแบบเรียลไทม์", "ประกันสินค้าระหว่างการขนส่ง"],
+                points: [
+                  "บริการขนส่งทางเรือ อากาศ และรถบรรทุก",
+                  "ระบบติดตามสถานะแบบเรียลไทม์",
+                  "ประกันสินค้าระหว่างการขนส่ง",
+                ],
               },
               {
-                icon: <FileText className="w-8 h-8" />,
                 title: "จัดการเอกสารศุลกากร",
                 image: "/placeholder.svg?height=200&width=400",
-                points: ["ดำเนินการเอกสารนำเข้าอย่างถูกต้อง", "ผ่านพิธีการศุลกากรอย่างรวดเร็ว", "จัดการภาษีนำเข้าอย่างถูกต้อง"],
+                points: [
+                  "ดำเนินการเอกสารนำเข้าอย่างถูกต้อง",
+                  "ผ่านพิธีการศุลกากรอย่างรวดเร็ว",
+                  "จัดการภาษีนำเข้าอย่างถูกต้อง",
+                ],
               },
               {
-                icon: <Package className="w-8 h-8" />,
                 title: "ตรวจสอบคุณภาพสินค้า",
                 image: "/placeholder.svg?height=200&width=400",
-                points: ["ตรวจสอบสินค้าก่อนส่งออกจากต้นทาง", "ถ่ายภาพและวิดีโอสินค้าให้ลูกค้า", "รับประกันคุณภาพตามมาตรฐาน"],
+                points: [
+                  "ตรวจสอบสินค้าก่อนส่งออกจากต้นทาง",
+                  "ถ่ายภาพและวิดีโอสินค้าให้ลูกค้า",
+                  "รับประกันคุณภาพตามมาตรฐาน",
+                ],
               },
               {
-                icon: <Shield className="w-8 h-8" />,
                 title: "ประกันสินค้า",
                 image: "/placeholder.svg?height=200&width=400",
-                points: ["ประกันความเสียหายระหว่างการขนส่ง", "คุ้มครองเต็มมูลค่าสินค้า", "ชดเชยรวดเร็วหากเกิดความเสียหาย"],
+                points: [
+                  "ประกันความเสียหายระหว่างการขนส่ง",
+                  "คุ้มครองเต็มมูลค่าสินค้า",
+                  "ชดเชยรวดเร็วหากเกิดความเสียหาย",
+                ],
               },
               {
-                icon: <Clock className="w-8 h-8" />,
                 title: "ติดตามสถานะแบบเรียลไทม์",
                 image: "/placeholder.svg?height=200&width=400",
                 points: [
@@ -226,47 +277,30 @@ export default function ImportBusinessLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="service-card group"
+                className="overflow-hidden rounded-xl shadow-lg group bg-white"
               >
-                <div className="relative overflow-hidden">
+                <div className="relative h-48">
                   <Image
-                    src={service.image || "/placeholder.svg"}
+                    src={service.image}
                     alt={service.title}
-                    width={400}
-                    height={200}
-                    className="service-card-image group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute top-4 left-4 w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white">
-                    {service.icon}
-                  </div>
                 </div>
-                <div className="service-card-content">
-                  <h3 className="text-xl font-bold text-primary mb-3">{service.title}</h3>
-                  <ul className="service-list">
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
+                  <ul className="text-gray-700 space-y-2">
                     {service.points.map((point, i) => (
-                      <li key={i} className="service-list-item">
-                        {point}
+                      <li key={i} className="flex items-start">
+                        <span className="mr-2 text-primary">•</span>
+                        <span>{point}</span>
                       </li>
                     ))}
                   </ul>
-                  <button className="mt-6 text-primary font-semibold hover:text-blue-700 transition-colors flex items-center">
-                    เรียนรู้เพิ่มเติม <ChevronRight className="ml-1 w-4 h-4" />
-                  </button>
                 </div>
               </motion.div>
             ))}
           </div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="text-center mt-12"
-          >
-            <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-400 transition-colors">
-              สอบถามผ่าน LINE
-            </button>
-          </motion.div>
         </div>
       </section>
 
@@ -469,67 +503,74 @@ export default function ImportBusinessLanding() {
       </section>
 
       {/* Concept Section */}
-      <section id="concept" className="py-20 bg-gradient-to-br from-primary to-blue-400 text-white">
+      <section id="concept" className="py-20 bg-white text-gray-900">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">แนวคิดของเรา</h2>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">บริการขนส่งที่ตอบโจทย์ทุกความต้องการ</p>
+            {/* Small bubble label above heading */}
+            <span className="inline-block bg-yellow-300 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold mb-4">
+              แนวคิดของเรา
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">บริการขนส่งที่ตอบโจทย์</h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              เรามุ่งสร้างประสบการณ์จัดส่งที่ง่าย รวดเร็ว และโปร่งใสสำหรับคุณ
+            </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <Image
-                src="/images/storage_1.webp"
-                alt="บริการขนส่งสินค้า"
-                width={1000}
-                height={600}
-                className="rounded-xl shadow-2xl"
-              />
-            </motion.div>
+          {/* Split 2-box layout: Image on left, details on right */}
+          <div className="mt-12 flex flex-col lg:flex-row items-start gap-8">
+            {/* Left Box: Concept Image */}
+            <div className="w-full lg:w-1/2">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <Image
+                  src="/images/storage_1.webp"
+                  alt="บริการขนส่งสินค้า"
+                  width={1000}
+                  height={600}
+                  className="rounded-xl shadow-2xl w-full object-cover"
+                />
+              </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                <h3 className="text-2xl font-bold mb-3 text-white">ชิ้นเดียวก็ส่งได้</h3>
-                <p className="text-lg">ส่งง่ายสบายใจในเรทเดียว ไม่มีขั้นต่ำ ลงทุนน้อย ทุนไม่จม</p>
-              </div>
-
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                <h3 className="text-2xl font-bold mb-3 text-white">เรทพิเศษสำหรับลูกค้า VIP</h3>
-                <p className="text-lg">ลูกค้าขนส่งสินค้า 4 คิวขึ้นไป มีเรทพิเศษ ราคาดีแบบสุดๆ</p>
-              </div>
-
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                <h3 className="text-2xl font-bold mb-3 text-white">ปิดตู้ไว ส่งถึงเร็ว</h3>
-                <p className="text-lg">ปิดตู้ภายใน 1-2 วัน เพื่อให้ลูกค้าได้รับสินค้าเร็วที่สุด สั่งได้เรื่อยๆ</p>
-              </div>
-
-              <div className="flex items-center space-x-4 mt-8">
-                <div className="bg-white text-primary p-4 rounded-full">
-                  <MessageCircle className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="text-lg font-semibold">สอบถามเพิ่มเติมได้ที่</p>
-                  <p className="text-xl font-bold text-white">Line @Plearn.cargo</p>
-                </div>
-              </div>
-            </motion.div>
+            {/* Right Box: Concept Details */}
+            <div className="w-full lg:w-1/2 space-y-6">
+              {[
+                {
+                  title: "ชิ้นเดียวก็ส่งได้ 💰",
+                  description: "ส่งง่ายสบายใจในเรทเดียว ไม่มีขั้นต่ำ ลงทุนน้อย ทุนไม่จม",
+                },
+                {
+                  title: "ปิดตู้ไว ส่งถึงเร็ว 🚀",
+                  description: "ไปิดตู้ภายใน 1-2 วัน เพื่อให้ลูกค้าได้รับสินค้าเร็วที่สุด สั่งได้เรื่อยๆ",
+                },
+                {
+                  title: "เรทพิเศษสำหรับลูกค้า VIP 🎉",
+                  description: "ลูกค้าขนส่งสินค้า 4 คิวขึ้นไป มีเรทพิเศษ ราคาดีแบบสุดๆ",
+                },
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white border border-gray-200 p-6 rounded-xl shadow-md hover:shadow-lg transition-colors"
+                >
+                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-gray-600">{item.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
