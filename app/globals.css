@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 203 100% 68%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 203 100% 68%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .hero-slide {
+    @apply absolute inset-0 bg-cover bg-center transition-opacity duration-1000;
+  }
+
+  .service-card {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-blue-100 hover:-translate-y-1;
+  }
+
+  .service-card-image {
+    @apply w-full h-48 object-cover;
+  }
+
+  .service-card-content {
+    @apply p-6;
+  }
+
+  .service-list {
+    @apply mt-4 space-y-2;
+  }
+
+  .service-list-item {
+    @apply flex items-start;
+  }
+
+  .service-list-item:before {
+    content: "—";
+    margin-right: 0.5rem;
+    font-weight: bold;
+  }
+
+  .document-card {
+    @apply bg-white rounded-lg shadow-lg p-6 relative;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .document-card:before {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-6 rounded-t-lg;
+    background-color: #5bbcff;
+  }
+
+  .document-list {
+    @apply mt-6 space-y-3;
+  }
+
+  .document-list-item {
+    @apply flex items-start;
+  }
+
+  .document-list-item:before {
+    content: "•";
+    color: #5bbcff;
+    margin-right: 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  .timeline-step {
+    @apply relative flex items-start mb-12 last:mb-0;
+  }
+
+  .timeline-step:not(:last-child):after {
+    content: "";
+    @apply absolute left-8 top-16 w-0.5 h-12;
+    background-color: #d1d5db;
+  }
+
+  .timeline-number {
+    @apply flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl mr-6;
+    background-color: #5bbcff;
+    color: white;
+  }
+
+  .tracking-highlight {
+    @apply relative overflow-hidden rounded-2xl text-white;
+    background: linear-gradient(135deg, #5bbcff 0%, #3a9edf 100%);
+  }
+
+  .tracking-highlight:before {
+    content: "";
+    @apply absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .tracking-highlight:after {
+    content: "";
+    @apply absolute -bottom-24 -left-24 w-48 h-48 rounded-full blur-3xl;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .reason-card {
+    @apply bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300;
+    border-left: 4px solid #5bbcff;
+  }
+
+  .reason-list {
+    @apply mt-4 space-y-2;
+  }
+
+  .reason-list-item {
+    @apply flex items-start;
+  }
+
+  .reason-list-item:before {
+    content: "✓";
+    color: #5bbcff;
+    margin-right: 0.5rem;
+    font-weight: bold;
+  }
+}
