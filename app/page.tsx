@@ -131,71 +131,64 @@ export default function ImportBusinessLanding() {
             </motion.div>
           </div>
 
-          {/* Right Column: Mobile Mockup */}
-          <div className="w-full lg:w-1/2 mt-10 lg:mt-0 flex justify-center">
-            <div className="relative w-64 h-[480px] bg-gray-100 rounded-3xl shadow-xl overflow-hidden">
-              {/* Simulated mobile device frame */}
-              <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-16 h-2 bg-gray-300 rounded-full"></div>
-              {/* Mobile screen content */}
-              <div className="absolute inset-0 p-4 flex flex-col bg-white">
-                {/* Header area */}
-                <div className="mb-4 flex justify-between items-center">
-                  <span className="text-sm font-semibold text-gray-500">เช็คสถานะพัสดุ</span>
-                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                </div>
-                {/* Tracking number */}
-                <div className="mb-6">
-                  <p className="text-xs text-gray-400">หมายเลขพัสดุ</p>
-                  <p className="text-lg font-bold text-primary">TH12345678901</p>
-                </div>
-                {/* Status badge */}
-                <div className="mb-6">
-                  <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
-                    กำลังขนส่ง
-                  </span>
-                </div>
-                {/* Timeline steps */}
-                <div className="flex flex-col space-y-4 flex-grow">
-                  <div className="flex items-start">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">
-                      ✓
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-sm font-medium text-gray-700">12 มิ.ย. 10:30 - ออกจากคลังต้นทาง</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">
-                      ✓
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-sm font-medium text-gray-700">14 มิ.ย. 08:45 - ถึงด่านศุลกากร</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs">
-                      …
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-sm font-medium text-gray-700">15 มิ.ย. 14:20 - กำลังดำเนินพิธีการศุลกากร</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start opacity-50">
-                    <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center text-white text-xs">
-                      …
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-sm font-medium text-gray-400">รอดำเนินการ - ถึงคลังปลายทาง</p>
-                    </div>
-                  </div>
-                </div>
-                {/* Footer */}
-                <div className="pt-4 border-t border-gray-200">
-                  <button className="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
-                    ดูรายละเอียดเพิ่มเติม
-                  </button>
-                </div>
-              </div>
+          {/* Divider สำหรับหน้าจอใหญ่ */}
+          <div className="hidden lg:block w-px h-64 bg-gray-200 mx-8"></div>
+
+          {/* Right Column: Infographic Process */}
+          <div className="w-full lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
+            <div className="flex flex-col items-center space-y-8">
+              {/* Step 1: Ship from China */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="flex flex-col items-center hover:scale-110 transition-transform duration-300"
+              >
+                <Package className="w-12 h-12 text-primary" />
+                <p className="mt-2 text-gray-800 font-medium">ส่งออกจากจีน</p>
+              </motion.div>
+
+              {/* Arrow */}
+              <ChevronDown className="w-6 h-6 text-gray-400 rotate-90" />
+
+              {/* Step 2: Customs */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="flex flex-col items-center hover:scale-110 transition-transform duration-300"
+              >
+                <Shield className="w-12 h-12 text-secondary" />
+                <p className="mt-2 text-gray-800 font-medium">ผ่านพิธีการศุลกากร</p>
+              </motion.div>
+
+              {/* Arrow */}
+              <ChevronDown className="w-6 h-6 text-gray-400 rotate-90" />
+
+              {/* Step 3: Truck to Thailand */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex flex-col items-center hover:scale-110 transition-transform duration-300"
+              >
+                <Truck className="w-12 h-12 text-primary" />
+                <p className="mt-2 text-gray-800 font-medium">ขนส่งถึงไทย</p>
+              </motion.div>
+
+              {/* Arrow */}
+              <ChevronDown className="w-6 h-6 text-gray-400 rotate-90" />
+
+              {/* Step 4: Last Mile */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex flex-col items-center hover:scale-110 transition-transform duration-300"
+              >
+                <Users className="w-12 h-12 text-secondary" />
+                <p className="mt-2 text-gray-800 font-medium">จัดส่งถึงปลายทาง</p>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -383,7 +376,7 @@ export default function ImportBusinessLanding() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="tracking-highlight p-8 md:p-12"
+            className="tracking-highlight p-4 md:p-6 overflow-visible"
           >
             <div className="grid md:grid-cols-2 gap-8 items-center relative z-10">
               <div>
@@ -418,84 +411,69 @@ export default function ImportBusinessLanding() {
                 </div>
               </div>
               <div className="flex justify-center">
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className="relative"
-                >
-                  <div className="bg-white rounded-xl shadow-xl p-6 max-w-md">
-                    <div className="flex items-center justify-between mb-6">
-                      <h3 className="font-bold text-primary">ระบบติดตามพัสดุ</h3>
-                      <span className="text-green-500 text-sm font-semibold">สถานะ: กำลังขนส่ง</span>
+                {/* Mobile Mockup */}
+                <div className="w-80 mx-auto rounded-[2.5rem] border-8 border-gray-800 bg-gray-800 shadow-2xl relative hover:scale-105 transition-transform duration-300">
+                  <div className="bg-white rounded-[2rem] p-4 h-[550px] overflow-y-auto">
+                    {/* Screen Header */}
+                    <div className="text-center text-sm text-gray-500 mb-2">PlearnCargo.com</div>
+
+                    {/* App Header */}
+                    <div className="text-lg font-semibold text-gray-700 mb-4 text-center border-b pb-2">ติดตามพัสดุ</div>
+
+                    {/* Parcel Number */}
+                    <div className="bg-gray-100 p-3 rounded-lg shadow-sm mb-4">
+                      <label className="text-xs text-gray-500 block mb-1">หมายเลขพัสดุ:</label>
+                      <p className="text-sm text-gray-800 font-medium">TH123456789XYZ</p>
                     </div>
-                    <div className="space-y-6">
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white">
-                          <CheckCircle className="w-5 h-5" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-sm text-gray-500">12 มิ.ย. 2024, 10:30</p>
-                          <p className="font-medium text-primary">สินค้าถูกส่งออกจากคลังต้นทาง</p>
-                        </div>
+
+                    {/* Current Status Card */}
+                    <div className="bg-primary/10 p-4 rounded-lg shadow-md mb-6">
+                      <div className="flex items-center mb-2">
+                        <Truck className="w-6 h-6 text-primary mr-3 flex-shrink-0" />
+                        <h3 className="text-md font-semibold text-primary">กำลังขนส่ง</h3>
                       </div>
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white">
-                          <CheckCircle className="w-5 h-5" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-sm text-gray-500">14 มิ.ย. 2024, 08:45</p>
-                          <p className="font-medium text-primary">สินค้าถึงด่านศุลกากร</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
-                          <Clock className="w-5 h-5" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-sm text-gray-500">15 มิ.ย. 2024, 14:20</p>
-                          <p className="font-medium text-primary">กำลังดำเนินพิธีการศุลกากร</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center opacity-40">
-                        <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-white">
-                          <Clock className="w-5 h-5" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-sm text-gray-500">รอดำเนินการ</p>
-                          <p className="font-medium text-primary">สินค้าถึงคลังปลายทาง</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center opacity-40">
-                        <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-white">
-                          <Clock className="w-5 h-5" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-sm text-gray-500">รอดำเนินการ</p>
-                          <p className="font-medium text-primary">จัดส่งถึงผู้รับ</p>
-                        </div>
-                      </div>
+                      <p className="text-xs text-gray-600">อัปเดตล่าสุด: 15 มิ.ย. 2024, 14:30</p>
                     </div>
-                    <div className="mt-6 pt-6 border-t border-gray-200">
-                      <div className="flex justify-between items-center">
+
+                    {/* Shipment Timeline */}
+                    <div className="space-y-4">
+                      {/* Step 1: Completed */}
+                      <div className="flex items-center">
+                        <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
                         <div>
-                          <p className="text-sm text-gray-500">หมายเลขพัสดุ</p>
-                          <p className="font-bold text-primary">TH12345678901</p>
+                          <p className="text-sm font-medium text-gray-700">รับพัสดุแล้ว</p>
+                          <p className="text-xs text-gray-500">14 มิ.ย. 2024, 10:00</p>
                         </div>
-                        <button className="text-primary font-semibold hover:text-blue-700 transition-colors flex items-center">
-                          ดูรายละเอียด <ChevronRight className="w-4 h-4 ml-1" />
-                        </button>
+                      </div>
+                      {/* Step 2: Current */}
+                      <div className="flex items-center">
+                        <Truck className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
+                        <div>
+                          <p className="text-sm font-medium text-primary">อยู่ระหว่างขนส่ง</p>
+                          <p className="text-xs text-gray-500">14 มิ.ย. 2024, 18:30</p>
+                        </div>
+                      </div>
+                      {/* Step 3: Pending */}
+                      <div className="flex items-center opacity-60">
+                        <Clock className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0" />
+                        <div>
+                          <p className="text-sm font-medium text-gray-500">ถึงศูนย์คัดแยกปลายทาง</p>
+                          <p className="text-xs text-gray-400">รอดำเนินการ</p>
+                        </div>
+                      </div>
+                      {/* Step 4: Pending */}
+                      <div className="flex items-center opacity-60">
+                        <Clock className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0" />
+                        <div>
+                          <p className="text-sm font-medium text-gray-500">กำลังนำจ่าย</p>
+                          <p className="text-xs text-gray-400">รอดำเนินการ</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white rounded-full flex items-center justify-center text-primary font-bold">
-                    <div className="text-center">
-                      <div className="text-sm">ติดตาม</div>
-                      <div className="text-xl">24/7</div>
-                    </div>
-                  </div>
-                </motion.div>
+                  {/* Notch (Optional) */}
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-5 bg-gray-800 rounded-b-xl"></div>
+                </div>
               </div>
             </div>
           </motion.div>
