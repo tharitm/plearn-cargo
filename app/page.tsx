@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import {
   Phone,
   Mail,
@@ -26,6 +26,7 @@ import {
   ShoppingBag,
   Briefcase,
   UserCheck,
+  ArrowUpRight,
 } from "lucide-react"
 
 const heroImages = [
@@ -54,8 +55,86 @@ export default function ImportBusinessLanding() {
     return () => clearInterval(interval)
   }, [])
 
+  const services = [
+    {
+      title: "ขนส่งจากจีน-ไทย ทางรถ",
+      image: "/images/1_1.webp?height=200&width=400",
+      points: [
+        "ชิปปิ้งจากจีน ระยะเวลา 5-7 วัน",
+        "พร้อมบริการส่งตรงถึงมือคุณ",
+        "พร้อมบริการส่งตรงถึงมือคุณ",
+      ],
+    },
+    {
+      title: "ขนส่งจากจีน-ไทย ทางเรือ",
+      image: "/images/1_2.webp",
+      points: [
+        "ชิ้ปปิ้งจากจีน ระยะเวลา 20-25 วัน",
+        "ประหยัดค่าใช้จ่าย",
+        "ของชิ้นเล็กก็สามารถส่งได้",
+      ],
+    },
+    {
+      title: "บริการเหมาตู้สินค้า",
+      image: "/images/1_3.webp",
+      points: [
+        "ราคาสุดคุ้ม",
+        "เหมาะกับผู้ประกอบการ",
+        "รับหน้าโรงงานได้เลย",
+      ],
+    },
+    {
+      title: "ออกแบบกำกับภาษีสินค้า",
+      image: "/images/1_4.webp",
+      points: [
+        "ออกใบกำกับภาษีค่าสินค้า",
+        "ใช้งานได้จริง",
+        "คุ้มค่า",
+      ],
+    },
+    {
+      title: "นำเข้าแบบมีเอกสารถูกต้อง",
+      image: "/images/2_5.webp",
+      points: [
+        "เอกสารถูกต้อง",
+        "ออกใบขนจากศุลกากร",
+        "FORM E ใช้ลดหย่อนภาษี",
+      ],
+    },
+    {
+      title: "บริการทัวร์แหล่งสินค้า/ล่ามแปลภาษา",
+      image: "/images/2_6.webp",
+      points: [
+        "บุกถึงแหล่งสินค้าจีน",
+        "ทั้งทัวร์และล่าม",
+        "จัดให้ทุกอย่างตามงบประมาณ",
+      ],
+    },
+    {
+      title: "แลกเงินหยวน ฝากจ่ายสินค้า",
+      image: "/images/2_7.webp",
+      points: [
+        "เติมเงิน Alipay",
+        "เติมเงิน บัญชีจีน",
+        "ฝากจ่าย TAOBAO 1688",
+      ],
+    },
+    {
+      title: "ฝากสั่งสินค้าจากจีน",
+      image: "/images/2_8.webp",
+      points: [
+        "จัดหาสินค้า",
+        "ฝากสั่งสินค้า TAOBAO  1688 Alibaba",
+        "ดูแลสินค้าทุกขั้นตอน",
+      ],
+    },
+  ];
+
+  const [showAllServices, setShowAllServices] = useState(false);
+  const displayedServices = showAllServices ? services : services.slice(0, 4);
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -100,34 +179,35 @@ export default function ImportBusinessLanding() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900"
             >
-              บริการนำเข้าสินค้าครบวงจร
-              <span className="block text-primary mt-2">ติดตามสถานะพัสดุแบบเรียลไทม์</span>
+              รับนำเข้าสินค้า
+              จากจีน - ไทย
+              <span className="block text-4xl text-primary mt-2">ติดตามสถานะพัสดุได้ 24 ชม.</span>
             </motion.h1>
 
-            <motion.p
+            {/* <motion.p
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg sm:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0"
             >
               รู้สถานะพัสดุได้ตลอดเส้นทางในมือถือของคุณ ดูประวัติและขั้นตอนการจัดส่งอย่างชัดเจน
-            </motion.p>
+            </motion.p> */}
 
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mt-6"
+              className="flex flex-col sm:flex-row items-start lg:items-start gap-4 mt-6"
             >
-              <button className="bg-primary text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary/90 transition-colors flex items-center">
-                เริ่มใช้บริการ
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </button>
-              <button className="border-2 border-primary text-primary px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary hover:text-white transition-colors">
-                ดูตัวอย่างการติดตาม
-              </button>
+              <Link href="#services">
+                <button className="group text-black px-1 text-lg font-semibold bg-transparent relative overflow-hidden flex items-center">
+                  <span className="relative z-10 text-2xl">บริการของเรา</span>
+                  <ArrowRight className="ml-2 w-5 h-5 text-black relative z-10 transform transition-transform duration-300 group-hover:translate-x-1" />
+                  <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-black transition-all duration-500 group-hover:w-full"></span>
+                </button>
+              </Link>
             </motion.div>
           </div>
 
@@ -149,7 +229,7 @@ export default function ImportBusinessLanding() {
               </motion.div>
 
               {/* Arrow */}
-              <ChevronDown className="w-6 h-6 text-gray-400 rotate-90" />
+              <ChevronDown className="w-6 h-6 text-gray-400 rotate-360" />
 
               {/* Step 2: Customs */}
               <motion.div
@@ -163,7 +243,7 @@ export default function ImportBusinessLanding() {
               </motion.div>
 
               {/* Arrow */}
-              <ChevronDown className="w-6 h-6 text-gray-400 rotate-90" />
+              <ChevronDown className="w-6 h-6 text-gray-400 rotate-360" />
 
               {/* Step 3: Truck to Thailand */}
               <motion.div
@@ -177,7 +257,7 @@ export default function ImportBusinessLanding() {
               </motion.div>
 
               {/* Arrow */}
-              <ChevronDown className="w-6 h-6 text-gray-400 rotate-90" />
+              <ChevronDown className="w-6 h-6 text-gray-400 rotate-360" />
 
               {/* Step 4: Last Mile */}
               <motion.div
@@ -187,7 +267,7 @@ export default function ImportBusinessLanding() {
                 className="flex flex-col items-center hover:scale-110 transition-transform duration-300"
               >
                 <Users className="w-12 h-12 text-secondary" />
-                <p className="mt-2 text-gray-800 font-medium">จัดส่งถึงปลายทาง</p>
+                <p className="mt-2 text-gray-800 font-medium">จัดส่งถึงบ้านคุณ</p>
               </motion.div>
             </div>
           </div>
@@ -197,101 +277,61 @@ export default function ImportBusinessLanding() {
       {/* Our Services */}
       <section id="services" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
+
+          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">บริการของเรา</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">ครอบคลุมทุกขั้นตอนการนำเข้าสินค้า ด้วยประสบการณ์กว่า 10 ปี</p>
+            <span className="inline-block bg-secondary text-white px-3 py-1 rounded-full text-sm font-semibold mb-2">
+              บริการของเรา
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold my-2">
+              ครอบคลุมทุกขั้นตอนการนำเข้าสินค้า
+            </h2>
+            <button
+              onClick={() => setShowAllServices(!showAllServices)}
+              className="inline-flex items-center text-primary font-medium hover:text-primary/80 transition-colors"
+            >
+              <span>{showAllServices ? "View Less Services" : "View All Services"}</span>
+              <ArrowUpRight className="ml-2 w-5 h-5 text-primary transform transition-transform duration-300" />
+            </button>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "สั่งซื้อสินค้าจากต่างประเทศ",
-                image: "/placeholder.svg?height=200&width=400",
-                points: [
-                  "ช่วยสั่งซื้อสินค้าจากจีน เกาหลี ญี่ปุ่น",
-                  "ตรวจสอบความน่าเชื่อถือของผู้ขาย",
-                  "เจรจาต่อรองราคาให้ดีที่สุด",
-                ],
-              },
-              {
-                title: "ขนส่งและโลจิสติกส์",
-                image: "/placeholder.svg?height=200&width=400",
-                points: [
-                  "บริการขนส่งทางเรือ อากาศ และรถบรรทุก",
-                  "ระบบติดตามสถานะแบบเรียลไทม์",
-                  "ประกันสินค้าระหว่างการขนส่ง",
-                ],
-              },
-              {
-                title: "จัดการเอกสารศุลกากร",
-                image: "/placeholder.svg?height=200&width=400",
-                points: [
-                  "ดำเนินการเอกสารนำเข้าอย่างถูกต้อง",
-                  "ผ่านพิธีการศุลกากรอย่างรวดเร็ว",
-                  "จัดการภาษีนำเข้าอย่างถูกต้อง",
-                ],
-              },
-              {
-                title: "ตรวจสอบคุณภาพสินค้า",
-                image: "/placeholder.svg?height=200&width=400",
-                points: [
-                  "ตรวจสอบสินค้าก่อนส่งออกจากต้นทาง",
-                  "ถ่ายภาพและวิดีโอสินค้าให้ลูกค้า",
-                  "รับประกันคุณภาพตามมาตรฐาน",
-                ],
-              },
-              {
-                title: "ประกันสินค้า",
-                image: "/placeholder.svg?height=200&width=400",
-                points: [
-                  "ประกันความเสียหายระหว่างการขนส่ง",
-                  "คุ้มครองเต็มมูลค่าสินค้า",
-                  "ชดเชยรวดเร็วหากเกิดความเสียหาย",
-                ],
-              },
-              {
-                title: "ติดตามสถานะแบบเรียลไทม์",
-                image: "/placeholder.svg?height=200&width=400",
-                points: [
-                  "ระบบติดตามสินค้าออนไลน์ 24/7",
-                  "การแจ้งเตือนทุกขั้นตอนผ่าน SMS และอีเมล",
-                  "รายงานสถานะประจำวันสำหรับลูกค้า VIP",
-                ],
-              },
-            ].map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="overflow-hidden rounded-xl shadow-lg group bg-white"
-              >
-                <div className="relative h-48">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+
+          {/* Services Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {displayedServices.map((service, index) => (
+              <div key={index} className="relative bg-transparent">
+                {/* Card Container */}
+                <div className="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                  {/* Image */}
+                  <div className="relative md:h-40 xl:h-48">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover rounded-2xl"
+                    />
+                  </div>
+                  {/* Overlay Box */}
+                  <div className="-mt-6 bg-gray-200 bg-opacity-90 p-4 rounded-b-2xl">
+                    <h3 className="text-foreground text-lg font-semibold mt-6">
+                      {service.title}
+                    </h3>
+                    <ul className="text-foreground-300 text-sm space-y-2 mt-2">
+                      {service.points.map((point, i) => (
+                        <li key={i} className="flex items-start">
+                          <span className="mr-2">•</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                  <ul className="text-gray-700 space-y-2">
-                    {service.points.map((point, i) => (
-                      <li key={i} className="flex items-start">
-                        <span className="mr-2 text-primary">•</span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -308,34 +348,39 @@ export default function ImportBusinessLanding() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">วิธีการใช้บริการ</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">เพียง 5 ขั้นตอนง่ายๆ สินค้าจากต่างประเทศจะมาถึงมือคุณ</p>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">เพียง 6 ขั้นตอนง่ายๆ สินค้าจากจีนจะมาถึงมือคุณ</p>
           </motion.div>
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto space-y-8">
             {[
               {
-                step: "01",
-                title: "ส่งรายละเอียดสินค้า",
-                description: "ส่งลิงก์สินค้าหรือรูปภาพที่ต้องการนำเข้า พร้อมจำนวนที่ต้องการ",
+                step: "1",
+                title: "ติดต่อ",
+                description: <>ลูกค้าติดต่อ <span className="text-secondary font-bold">เพลิน คาร์โก้</span> เพื่อลงทะเบียน</>,
               },
               {
-                step: "02",
-                title: "รับใบเสนอราคา",
-                description: "ทีมงานจะคำนวณราคาสินค้า ค่าขนส่ง และค่าดำเนินการให้ภายใน 24 ชั่วโมง",
+                step: "2",
+                title: "ส่งเอกสาร",
+                description: <>ส่งเอกสารที่ใช้ในการเปิดรหัสให้กับ <span className="text-secondary font-bold">เพลิน คาร์โก้</span></>,
               },
               {
-                step: "03",
-                title: "ชำระเงินมัดจำ",
-                description: "ชำระเงินมัดจำ 50% เพื่อเริ่มดำเนินการสั่งซื้อสินค้า",
+                step: "3",
+                title: "เลือกโกดัง",
+                description: <><span className="text-secondary font-bold">เพลิน คาร์โก้</span> จะแนะนำที่อยู่โกดังที่จีนให้ลูกค้า</>,
               },
               {
-                step: "04",
+                step: "4",
+                title: "สั่งสินค้าเข้าโกดัง",
+                description: <>ลูกค้าแจ้งโรงงาน/ร้านค้า ให้ส่งสินค้าเข้าโกดังของ <span className="text-secondary font-bold">เพลิน คาร์โก้</span> ที่จีน</>,
+              },
+              {
+                step: "5",
                 title: "ติดตามสถานะ",
-                description: "ติดตามสถานะการสั่งซื้อ การขนส่ง และการผ่านศุลกากรผ่านระบบออนไลน์",
+                description: <><span className="text-secondary font-bold">เพลิน คาร์โก้</span> แจ้งลูกค้าเมื่อสินค้าเข้าโกดังจีนและเมื่อถึงโกดังไทย</>,
               },
               {
-                step: "05",
+                step: "6",
                 title: "รับสินค้า",
-                description: "ชำระเงินส่วนที่เหลือและรับสินค้าที่จุดรับที่ตกลงกัน หรือส่งถึงที่",
+                description: <><span className="text-secondary font-bold">เพลิน คาร์โก้</span> แจ้งยอดค่าขนส่ง นัดรับสินค้า และประสานงานจัดส่ง</>,
               },
             ].map((item, index) => (
               <motion.div
@@ -344,11 +389,19 @@ export default function ImportBusinessLanding() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="timeline-step"
+                className="flex items-start p-6 rounded-xl shadow-md hover:shadow-lg transition-all"
               >
-                <div className="timeline-number">{item.step}</div>
-                <div className="flex-grow">
-                  <h3 className="text-2xl font-bold text-primary mb-3">{item.title}</h3>
+                {/* Icon per step */}
+                <div className="flex-shrink-0 mr-4">
+                  {item.step === "1" && <Phone className="w-8 h-8" />}
+                  {item.step === "2" && <Mail className="w-8 h-8" />}
+                  {item.step === "3" && <Package className="w-8 h-8" />}
+                  {item.step === "4" && <Truck className="w-8 h-8" />}
+                  {item.step === "5" && <CheckCircle className="w-8 h-8" />}
+                  {item.step === "6" && <Users className="w-8 h-8" />}
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-foreground mb-2">{`${item.step}. ${item.title}`}</h3>
                   <p className="text-gray-600 text-lg">{item.description}</p>
                 </div>
               </motion.div>
@@ -361,9 +414,6 @@ export default function ImportBusinessLanding() {
             viewport={{ once: true }}
             className="text-center mt-12"
           >
-            <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-400 transition-colors">
-              เริ่มใช้บริการ
-            </button>
           </motion.div>
         </div>
       </section>
@@ -529,7 +579,7 @@ export default function ImportBusinessLanding() {
                 },
                 {
                   title: "ปิดตู้ไว ส่งถึงเร็ว 🚀",
-                  description: "ไปิดตู้ภายใน 1-2 วัน เพื่อให้ลูกค้าได้รับสินค้าเร็วที่สุด สั่งได้เรื่อยๆ",
+                  description: "ปิดตู้ภายใน 1-2 วัน เพื่อให้ลูกค้าได้รับสินค้าเร็วที่สุด",
                 },
                 {
                   title: "เรทพิเศษสำหรับลูกค้า VIP 🎉",
@@ -575,22 +625,17 @@ export default function ImportBusinessLanding() {
               viewport={{ once: true }}
               className="relative rounded-xl overflow-hidden shadow-xl"
             >
-              <div className="aspect-w-16 aspect-h-9 bg-gray-800">
-                <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="วิดีโอสอนสั่งสินค้าจากจีน"
-                  width={600}
-                  height={400}
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button className="w-20 h-20 bg-primary rounded-full flex items-center justify-center hover:bg-blue-400 transition-colors">
-                    <PlayCircle className="w-12 h-12 text-white" />
-                  </button>
+              <div className="w-full max-w-2xl mx-auto">
+                <div className="relative" style={{ paddingBottom: "56.25%", height: 0 }}>
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/AWv3FuwXkEE?si=QqIP2DFroc-FDjID"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  ></iframe>
                 </div>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
-                <h3 className="text-white text-xl font-bold">เรียนรู้เคล็ดลับการสั่งสินค้าจากจีนให้ได้ราคาดีที่สุด</h3>
               </div>
             </motion.div>
 
@@ -644,12 +689,6 @@ export default function ImportBusinessLanding() {
                     </div>
                   </li>
                 </ul>
-              </div>
-
-              <div className="flex justify-center">
-                <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-400 transition-colors flex items-center">
-                  <Calendar className="mr-2 w-5 h-5" /> จองที่นั่งเลย
-                </button>
               </div>
             </motion.div>
           </div>
@@ -746,40 +785,15 @@ export default function ImportBusinessLanding() {
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">เหตุผลที่ต้องเลือกเรา</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">ความเชี่ยวชาญและประสบการณ์ที่สั่งสมมากกว่า 10 ปี</p>
           </motion.div>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
-              {
-                icon: <Users className="w-12 h-12" />,
-                title: "ทีมผู้เชี่ยวชาญ",
-                points: [
-                  "ทีมงานมืออาชีพ มีประสบการณ์มากกว่า 10 ปี",
-                  "พนักงานผ่านการอบรมด้านการนำเข้าส่งออก",
-                  "มีความเชี่ยวชาญเฉพาะด้านในแต่ละประเทศ",
-                ],
-              },
-              {
-                icon: <Shield className="w-12 h-12" />,
-                title: "ความปลอดภัย",
-                points: [
-                  "ประกันสินค้าเต็มมูลค่า ไม่มีค่าใช้จ่ายเพิ่มเติม",
-                  "ระบบรักษาความปลอดภัยข้อมูลลูกค้า",
-                  "การตรวจสอบคุณภาพสินค้าก่อนจัดส่ง",
-                ],
-              },
-              {
-                icon: <Clock className="w-12 h-12" />,
-                title: "รวดเร็วทันใจ",
-                points: ["ระยะเวลาการนำเข้าเฉลี่ย 15-30 วัน", "ตอบกลับภายใน 24 ชั่วโมง", "มีบริการเร่งด่วนสำหรับสินค้าเร่งด่วน"],
-              },
-              {
-                icon: <CheckCircle className="w-12 h-12" />,
-                title: "โปร่งใสทุกขั้นตอน",
-                points: [
-                  "ติดตามสถานะได้แบบเรียลไทม์ 24/7",
-                  "แจ้งค่าใช้จ่ายทั้งหมดล่วงหน้า ไม่มีค่าแอบแฝง",
-                  "รายงานความคืบหน้าอย่างสม่ำเสมอ",
-                ],
-              },
+              { emoji: "🛍️", title: "ไม่ต้องแยกประเภทสินค้า" },
+              { emoji: "💵", title: "รู้เรทราคาสินค้าที่แน่นอน" },
+              { emoji: "📞", title: "ปรึกษาฟรี โดยเจ้าหน้าที่ผู้เชี่ยวชาญโดยตรง" },
+              { emoji: "🤝", title: "ประสานงานกับร้านค้า/โรงงานจีนให้ฟรี" },
+              { emoji: "🚚", title: "จัดส่งไวและตรงเวลา" },
+              { emoji: "💳", title: "บริการเก็บเงินปลายทาง" },
+              { emoji: "❤️", title: "เอาใจใส่ทุกรายละเอียด" },
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -787,19 +801,12 @@ export default function ImportBusinessLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="reason-card"
+                className="bg-white border border-gray-200 p-6 shadow hover:shadow-lg transition-shadow"
               >
                 <div className="flex items-center mb-4">
-                  <div className="text-primary mr-4">{item.icon}</div>
-                  <h3 className="text-xl font-bold text-primary">{item.title}</h3>
+                  <span className="text-3xl mr-3">{item.emoji}</span>
+                  <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
                 </div>
-                <ul className="reason-list">
-                  {item.points.map((point, i) => (
-                    <li key={i} className="reason-list-item">
-                      {point}
-                    </li>
-                  ))}
-                </ul>
               </motion.div>
             ))}
           </div>
@@ -1014,13 +1021,6 @@ export default function ImportBusinessLanding() {
                 </div>
               </div>
             </div>
-
-            {/* CTA Button */}
-            <div className="text-center mt-12">
-              <button className="bg-primary text-white px-12 py-4 rounded-lg text-lg font-semibold hover:bg-blue-400 transition-colors">
-                เริ่มใช้บริการ
-              </button>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -1048,36 +1048,6 @@ export default function ImportBusinessLanding() {
                   <span className="text-xs">@</span>
                 </div>
               </div>
-            </div>
-            <div>
-              <h4 className="text-lg font-bold mb-4">บริการ</h4>
-              <ul className="space-y-2 text-blue-100">
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    นำเข้าจากจีน
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    นำเข้าจากเกาหลี
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    นำเข้าจากญี่ปุ่น
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    ขนส่งทางเรือ
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    ขนส่งทางอากาศ
-                  </Link>
-                </li>
-              </ul>
             </div>
             <div>
               <h4 className="text-lg font-bold mb-4">ข้อมูลบริษัท</h4>
@@ -1112,8 +1082,7 @@ export default function ImportBusinessLanding() {
             <div>
               <h4 className="text-lg font-bold mb-4">ติดต่อเรา</h4>
               <div className="space-y-2 text-blue-100">
-                <p>📍 123/45 ถนนสุขุมวิท แขวงคลองตัน</p>
-                <p>เขตวัฒนา กรุงเทพฯ 10110</p>
+                <p>📍 9/111 หมู่8 คลองหนึ่ง คลองหลวง ปทุมธานี 12120</p>
                 <p>📞 02-123-4567</p>
                 <p>📱 089-123-4567</p>
                 <p>✉️ info@Plearn Cargo.co.th</p>
