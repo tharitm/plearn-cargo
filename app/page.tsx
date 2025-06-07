@@ -1013,15 +1013,15 @@ export default function ImportBusinessLanding() {
       <footer className="bg-primary text-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
+            <div className="text-right"> {/* Added text-right */}
+              <div className="flex items-center space-x-2 mb-4 justify-end"> {/* Added justify-end to align logo group right */}
                 <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
                   <Globe className="w-6 h-6 text-primary" />
                 </div>
                 <span className="text-xl font-bold">Plearn Cargo</span>
               </div>
               <p className="text-brand-primary-light mb-4">ผู้เชี่ยวชาญด้านการนำเข้าสินค้าจากต่างประเทศ ให้บริการมากว่า 10 ปี</p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 justify-end"> {/* Added justify-end */}
                 <div className="w-8 h-8 bg-brand-primary-hover rounded-full flex items-center justify-center">
                   <span className="text-xs">f</span>
                 </div>
@@ -1033,7 +1033,7 @@ export default function ImportBusinessLanding() {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="text-right"> {/* Added text-right */}
               <h4 className="text-lg font-bold mb-4">บริการ</h4>
               <ul className="space-y-2 text-brand-primary-light">
                 <li>
@@ -1063,7 +1063,7 @@ export default function ImportBusinessLanding() {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className="text-right"> {/* Added text-right */}
               <h4 className="text-lg font-bold mb-4">ข้อมูลบริษัท</h4>
               <ul className="space-y-2 text-brand-primary-light">
                 <li>
@@ -1093,7 +1093,7 @@ export default function ImportBusinessLanding() {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className="text-right"> {/* Added text-right */}
               <h4 className="text-lg font-bold mb-4">ติดต่อเรา</h4>
               <div className="space-y-2 text-brand-primary-light">
                 <p>📍 123/45 ถนนสุขุมวิท แขวงคลองตัน</p>
@@ -1104,7 +1104,7 @@ export default function ImportBusinessLanding() {
               </div>
             </div>
           </div>
-          <div className="border-t border-brand-primary-hover mt-8 pt-8 text-center text-brand-primary-light">
+          <div className="border-t border-brand-primary-hover mt-8 pt-8 text-right text-brand-primary-light"> {/* Changed text-center to text-right */}
             <p>&copy; 2024 Plearn Cargo. สงวนลิขสิทธิ์ทุกประการ</p>
           </div>
         </div>
